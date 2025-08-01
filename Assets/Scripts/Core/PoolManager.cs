@@ -8,7 +8,6 @@ public class PoolManager : MonoBehaviour
     [System.Serializable]
     public class EnemyPoolConfig
     {
-        public string poolName;
         public Monster prefab;
         public int initialSize = 10;
     }
@@ -16,7 +15,6 @@ public class PoolManager : MonoBehaviour
     [System.Serializable]
     public class ProjectilePoolConfig
     {
-        public string poolName;
         public BaseProjectile prefab;
         public int initialSize = 10;
     }
@@ -47,18 +45,18 @@ public class PoolManager : MonoBehaviour
         
         foreach (var config in enemyPoolConfigs)
         {
-            var poolParent = new GameObject(config.poolName);
+            var poolParent = new GameObject(config.prefab.PoolName);
             poolParent.transform.SetParent(transform);
             var pool = new ObjectPool<Monster>(config.prefab, poolParent.transform, config.initialSize);
-            enemyPools[config.poolName] = pool;
+            enemyPools[config.prefab.PoolName] = pool;
         }
         
         foreach (var config in projectilesPoolConfigs)
         {
-            var poolParent = new GameObject(config.poolName);
+            var poolParent = new GameObject(config.prefab.PoolName);
             poolParent.transform.SetParent(transform);
             var pool = new ObjectPool<BaseProjectile>(config.prefab, poolParent.transform, config.initialSize);
-            projectilesPools[config.poolName] = pool;
+            projectilesPools[config.prefab.PoolName] = pool;
         }
     }
     
