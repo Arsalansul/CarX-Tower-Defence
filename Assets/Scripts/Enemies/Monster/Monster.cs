@@ -3,30 +3,11 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour, IEnemy, ITargetable
 {
-    public HealthComponent HealthComponent
-    {
-        get
-        {
-            if (healthComponent == null)
-            {
-                healthComponent = gameObject.GetComponent<HealthComponent>();
-            }
-
-            return healthComponent;
-        }
-    }
-
-    public MovementComponent MovementComponent
-    {
-        get
-        {
-            if (movementComponent == null)
-            {
-                movementComponent = gameObject.GetComponent<MovementComponent>();
-            }
-            return movementComponent;
-        }
-    }
+    [SerializeField] private HealthComponent healthComponent;
+    [SerializeField] private MovementComponent movementComponent;
+    public HealthComponent HealthComponent => healthComponent;
+    public MovementComponent MovementComponent => movementComponent;
+    
     private EnemyConfig config;
 
     protected EnemyConfig Config
@@ -46,9 +27,6 @@ public class Monster : MonoBehaviour, IEnemy, ITargetable
     public Vector3 Position => transform.position;
     public Vector3 Velocity => movementComponent.Velocity;
     public bool IsAlive => HealthComponent.IsAlive;
-
-    private HealthComponent healthComponent;
-    private MovementComponent movementComponent;
     
     private void Start()
     {

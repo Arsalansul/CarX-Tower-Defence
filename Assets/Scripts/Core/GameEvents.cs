@@ -3,6 +3,7 @@ using System;
 
 public static class GameEvents
 {
+    //к этим  ивентам можно будте цеплять аналитику
     public static event Action<ITargetable> OnTargetDestroyed;
     public static event Action<ITargetable> OnTargetSpawned;
     public static event Action<ITower> OnTowerShoot;
